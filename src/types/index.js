@@ -1,0 +1,5 @@
+// DATA GLOBAL
+export const MARVEL_GLOBAL = "MARVEL_GLOBAL"
+// PELEAS
+
+// RANKING
