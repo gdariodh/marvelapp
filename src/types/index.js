@@ -1,5 +1,6 @@
 // DATA GLOBAL
-export const MARVEL_GLOBAL = "MARVEL_GLOBAL"
+export const MARVEL_GLOBAL = "MARVEL_GLOBAL";
+export const OBJECT_HEROE = "OBJECT_HEROE";
 // PELEAS
-
+export const LUCHADORES = "LUCHADORES";
 // RANKING
