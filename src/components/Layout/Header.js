@@ -1,10 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Link } from "react-router-dom";
-// Separo en componente el header para tener el componente mas limpio
+import {peleasContext} from '../../context'
 import Logo from "./Logo";
-import Navigation from "./Navigation";
+import Ranking from './Ranking'
 
 export default function Header() {
+
+  const {luchadoresranking} = useContext(peleasContext)
+   
   return (
     <header
       className='bg-auto text-white sm:bg-local py-4 flex flex-col md:flex-row justify-between items-center border rounded-lg'
@@ -16,9 +19,14 @@ export default function Header() {
           <Logo />
         </Link>
       </div>
-      <div className='lg:mr-10 uppercase flex flex-col md:flex-row '>
-        <Navigation />
-      </div>
+      {
+        luchadoresranking.length >= 1 && (
+          <Link to={'/heroes/peleadores'}>
+            <Ranking/>
+          </Link>
+        )
+      }
+      
     </header>
   );
 }

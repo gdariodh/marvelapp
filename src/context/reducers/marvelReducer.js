@@ -13,7 +13,7 @@ export default function(state,action){
            case OBJECT_HEROE:
                return{
                    ...state,
-                   heroe: action.payload
+                   heroe_seleccionado: action.payload
                }
 
         default:

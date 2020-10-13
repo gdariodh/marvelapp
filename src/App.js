@@ -17,7 +17,7 @@ function App() {
             <main className='bg-gray-200 bg-opacity-25 min-h-screen'>
               <div className='container mx-auto'>
                 <Header/>
-                <div className='mt-20 '>
+                <div className='mt-16 '>
                   <Rutas />
                 </div>
               </div>

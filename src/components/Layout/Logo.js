@@ -3,7 +3,7 @@ import React from "react";
 export default function Logo() {
   return (
     <div className='sm:mb-6'>
-      <div className='flex flex-col md:flex-row justify-between'>
+      <div className='flex flex-col md:flex-row justify-around'>
         <div>
           <img
             className='w-48 h-24 lg:ml-6'

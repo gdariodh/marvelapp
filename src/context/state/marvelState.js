@@ -9,7 +9,8 @@ import clienteAxios from "../../config/axios";
 export default function MarvelState({ children }) {
   // state central -> se altera con el reducer
   const initialState = {
-    heroes: null
+    heroes: null,
+    heroe_seleccionado: null,
   };
 
   // Para hacer la peticion, y tener la data disponible en toda la app
@@ -32,23 +33,13 @@ export default function MarvelState({ children }) {
     };
     req();
   }, []);
-// FIXME:
-//   useEffect(() => {
-//     const req = async () => {
-//       const key = `f2b9a3277c025b953471c3448f8c8905`;
-//       const data = await clienteAxios(`/characters/${id}?apikey=${key}`);
-//       console.log(`informacion sobre ${heroe.name}`);
-//       console.log(data)
-//     };
-//     req();
-//   }, []);
 
-  //TODO: fn que trae el objecto de un heroe -> 
+  //fn que trae el objecto de un heroe
   const dataHeroeById = (heroe) => {
-      dispatch({
-          type: OBJECT_HEROE,
-          payload: heroe
-      })
+    dispatch({
+      type: OBJECT_HEROE,
+      payload: heroe,
+    });
   };
 
   // conexion state central con reducer
@@ -60,12 +51,11 @@ export default function MarvelState({ children }) {
     <marvelContext.Provider
       value={{
         heroes: state.heroes,
-        dataHeroeById: dataHeroeById
+        heroe_seleccionado:state.heroe_seleccionado,
+        dataHeroeById: dataHeroeById,
       }}>
       {children}
     </marvelContext.Provider>
   );
 }
 
-// Los children consumen con el useContext()
-// Children: ListadoHeroes
