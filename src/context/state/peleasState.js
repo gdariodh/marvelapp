@@ -5,8 +5,11 @@ import { LUCHADORES, LUCHADOR_RANKING } from "../../types";
 
 export default function PeleasState({ children }) {
   const initialState = {
-    luchadores: [],
-    luchadoresranking: [],
+    // TODO: forma de obtener el array del localStorage
+    luchadores: JSON.parse(localStorage.getItem("luchadores"))
+      ? JSON.parse(localStorage.getItem("luchadores"))
+      : [],
+    luchadoresranking: JSON.parse(localStorage.getItem("ranking")) ? JSON.parse(localStorage.getItem("ranking")) : [],
   };
 
   const [state, dispatch] = useReducer(peleasReducer, initialState);
@@ -36,7 +39,8 @@ export default function PeleasState({ children }) {
         nro_peleas: state.nro_peleas,
         seleccionarDosLuchadores,
         agregaLuchadorRanking,
-      }}>
+      }}
+    >
       {children}
     </peleasContext.Provider>
   );

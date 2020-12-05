@@ -7,9 +7,9 @@ export default function Comic({ comic }) {
   return (
     <>
       <div>
-        <div className='max-w-sm w-64 rounded overflow-hidden shadow-lg mx-3 my-3'>
+        <div className='md:max-w-sm md:w-64 w-full border-2 border-blue-100 rounded overflow-hidden shadow-lg mx-3 my-3'>
         <img
-            className='w-full h-64'
+            className='md:w-full pr-6 md:px-0 md:h-64'
             src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
             alt='Sunset in the mountains'
           />

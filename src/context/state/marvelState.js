@@ -10,7 +10,7 @@ export default function MarvelState({ children }) {
   // state central -> se altera con el reducer
   const initialState = {
     heroes: null,
-    heroe_seleccionado: null,
+    heroe_seleccionado: JSON.parse(localStorage.getItem("heroe")),
   };
 
   // Para hacer la peticion, y tener la data disponible en toda la app

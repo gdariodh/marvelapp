@@ -7,7 +7,7 @@ export default function Comic({ serie }) {
   return (
     <>
       <div>
-        <div className='max-w-sm w-64 rounded overflow-hidden shadow-lg mx-3 my-3'>
+        <div className='md:max-w-sm md:w-64 w-full border-2 border-blue-100 rounded overflow-hidden shadow-lg mx-3 my-3'>
         <img
             className='w-full h-64'
             src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}

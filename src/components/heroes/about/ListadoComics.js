@@ -32,7 +32,7 @@ export default function ListadoComics({ id_heroe }) {
           <Spinner />
         </div>
       ) : (
-        <div className='flex justify-between flex-wrap'>
+        <div className='flex flex-col md:flex-row flex-wrap pt-4  md:justify-around'>
           {comics &&
             comics.map((comic, i) => (
               <Comic key={`${comic.id}-${i}`} comic={comic} />

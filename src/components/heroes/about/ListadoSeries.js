@@ -8,6 +8,7 @@ import Spinner from "../../spinner/Spinner";
 export default function ListadoSeries({ id_heroe }) {
   const [series, setSeries] = useState([]);
   const [spinner, setSpinner] = useState(false);
+
   useEffect(() => {
     const req = async () => {
       const key = `f2b9a3277c025b953471c3448f8c8905`;
@@ -28,11 +29,11 @@ export default function ListadoSeries({ id_heroe }) {
   return (
     <>
       {spinner ? (
-        <div className='mt-24 mx-auto'>
+        <div className="mt-24 mx-auto">
           <Spinner />
         </div>
       ) : (
-        <div className='flex justify-between flex-wrap'>
+        <div className="flex flex-col md:flex-row flex-wrap pt-4  md:justify-around">
           {series &&
             series.map((serie, i) => (
               <Serie key={`${serie.id}-${i}`} serie={serie} />

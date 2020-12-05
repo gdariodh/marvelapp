@@ -60,36 +60,39 @@ export default function Peleas({ history }) {
     <>
       {!spinner ? (
         <>
-          <div className='mb-8'>{FiltroUI()}</div>
+          <div className="mb-8">{FiltroUI()}</div>
 
-          {luchadores.length > 0 && (
+          {luchadores.length !== 0 ? (
             <div>
-              <div className='flex justify-center'>
+              <div className="flex justify-center">
                 <img
-                  className='w-24 h-24'
-                  src='https://www.flaticon.es/svg/static/icons/svg/1622/1622503.svg'
-                  alt='versus'
+                  className="w-24 h-24 mb-4 md:m-0 "
+                  src="https://www.flaticon.es/svg/static/icons/svg/1966/1966612.svg"
+                  alt="versus"
                 />
               </div>
 
-              <div className='flex justify-around flex-wrap'>
+              <div className="flex justify-around flex-wrap">
                 {luchadores.map((luchador, i) => (
                   <Pelea key={`${luchador.id}-${i}`} luchador={luchador} />
                 ))}
               </div>
 
-              <div>
+              <div className="md:mt-0 mt-6">
                 <button
                   onClick={() => mostrarAlertaHeroeGanador(heroe_ganador)}
-                  className='bg-blue-600 hover:bg-blue-500 text-white uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-3 px-5 border-b-4 border-blue-800 hover:border-blue-700'>
+                  className="bg-red-600 hover:bg-red-500 text-white uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-3 px-5 border-b-4 border-red-800 hover:border-red-700"
+                >
                   Luchar
                 </button>
               </div>
             </div>
+          ) : (
+            <p>No hay</p>
           )}
         </>
       ) : (
-        <div className='mt-48'>
+        <div className="mt-48">
           <Spinner />
         </div>
       )}

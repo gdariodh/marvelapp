@@ -6,7 +6,9 @@ import AboutHeroe from "../components/heroes/about/AboutHeroe"
 import Peleas from "../components/heroes/peleas/Peleas";
 import ListadoPeleadores from "../components/heroes/peleas/Peleadores/ListadoPeleadores"; 
 
+
 export default function Index() {
+
   return (
     <>
       <Switch>

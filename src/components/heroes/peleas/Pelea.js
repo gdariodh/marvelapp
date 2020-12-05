@@ -10,7 +10,7 @@ export default function Pelea({ luchador }) {
 
   return (
     <div>
-      <div className='max-w-sm w-64 rounded overflow-hidden shadow-lg'>
+      <div className='max-w-sm w-64 rounded  overflow-hidden shadow-lg'>
         <img
           className='w-full h-64'
           src={`${thumbnail.path}.${thumbnail.extension}`}

@@ -5,13 +5,13 @@ const useCantidadPeleas = () => {
   const [numero_peleas, setNumeroPeleas] = useState(1);
 
   const FiltroUI = () => (
-    <form className='bg-white shadow-md rounded flex justify-center uppercase'>
+    <form className='bg-white  rounded flex justify-center '>
       <select
         onChange={(e) => setNumeroPeleas(e.target.value)}
         value={numero_peleas}
-        className='text-md font-semibold mb-2'
+        className='text-md font-semibold mb-2 text-lg'
         >
-        <option className='text-md font-semibold mb-2' value={1}>--Agregar mas de un Pelea--</option>
+        <option className='text-md font-semibold mb-2' value={1}>--Quieres mas de una pelea?--</option>
         <option className='text-md font-semibold mb-2' value={2}>2 Peleas</option>
         <option className='text-md font-semibold mb-2' value={3}>3 Peleas</option>
       </select>

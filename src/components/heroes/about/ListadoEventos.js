@@ -31,7 +31,7 @@ export default function ListadoEventos({ id_heroe, name }) {
           <Spinner />
         </div>
       ) : (
-        <div className='flex justify-between flex-wrap'>
+        <div className='flex flex-col md:flex-row flex-wrap pt-4  md:justify-around'>
           {eventos.length >= 1 && 
             eventos.map((evento, i) => (
               <Evento key={`${evento.id}-${i}`} evento={evento} />

@@ -48,10 +48,10 @@ export default function ListadoHeroes({ history }) {
         <>
           {luchadores_acumulados.length < 3 && !mostrar_error && (
             <div
-              className='bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 uppercase font-bold'
+              className='bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold'
               role='alert'>
               {luchadores_acumulados.length === 0 && (
-                <p className='text-center'>Elige a tu luchador</p>
+                <p className='text-center'>Elige a dos luchadores</p>
               )}
               {luchadores_acumulados.length === 1 && (
                 <p className='text-center'>Elige a tu rival</p>
@@ -66,7 +66,7 @@ export default function ListadoHeroes({ history }) {
             <>
               <button
                 onClick={() => redirectPeleas()}
-                className='bg-red-600 hover:bg-red-500 text-white  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700'>
+                className='bg-red-600 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700'>
                 Ir a la Arena
               </button>
             </>
@@ -74,7 +74,7 @@ export default function ListadoHeroes({ history }) {
 
           {mostrar_error && (
             <div
-              className='bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3 uppercase font-bold'
+              className='bg-red-100 border-t border-b border-red-500 text-red-500 px-4 py-3 uppercase font-bold'
               role='alert'>
               <p className='text-center'>
                 LOS LUCHADORES NO PUEDEN SER LOS MISMOS. Elige otro
@@ -82,7 +82,7 @@ export default function ListadoHeroes({ history }) {
             </div>
           )}
 
-          <div className='flex justify-between flex-wrap'>
+          <div className='flex flex-col md:flex-row flex-wrap pt-4  md:justify-around'>
             {heroes.map((heroe, i) => (
               <Heroe
                 key={`${heroe.id}-${i}`}

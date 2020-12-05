@@ -62,14 +62,14 @@ export default function ListadoPeleadores() {
     // eslint-disable-next-line
   }, [abributo]);
 
-  if (luchadoresranking.length === 0) return null;
+  if (luchadoresranking.length === 0) return <p>No hay</p>;
 
   return (
     <>
       <div className='flex flex-wrap justify-around mb-3'>
         {FiltroUI()}
-
-        {mostrar_boton && FiltroAtributos()}
+      
+        {mostrar_boton && <div className='mt-4 md:mt-0'>{FiltroAtributos()}</div> }
       </div>
 
       <div
