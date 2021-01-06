@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { peleasContext } from "../index";
 import peleasReducer from "../reducers/peleasReducer";
-import { LUCHADORES, LUCHADOR_RANKING } from "../../types";
+import { LUCHADORES, LUCHADOR_RANKING,RESET_LUCHADORES } from "../../types";
 
 export default function PeleasState({ children }) {
   const initialState = {
@@ -31,6 +31,9 @@ export default function PeleasState({ children }) {
     });
   };
 
+  // reseta luchadores -> funciona con la img del header
+  const resetLuchadores = () => dispatch({type:RESET_LUCHADORES})
+
   return (
     <peleasContext.Provider
       value={{
@@ -39,6 +42,7 @@ export default function PeleasState({ children }) {
         nro_peleas: state.nro_peleas,
         seleccionarDosLuchadores,
         agregaLuchadorRanking,
+        resetLuchadores
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { LUCHADORES, LUCHADOR_RANKING } from "../../types";
+import { LUCHADORES, LUCHADOR_RANKING, RESET_LUCHADORES } from "../../types";
 
 export default function (state, action) {
 
@@ -19,6 +19,12 @@ export default function (state, action) {
         ...state,
         luchadoresranking: [action.payload, ...state.luchadoresranking],
       };
+
+    case RESET_LUCHADORES:
+      return{
+        ...state,
+        luchadores: []
+      }   
 
 
     default:

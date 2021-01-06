@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import Ranking from "./Ranking";
 
 export default function Header() {
-  const { luchadoresranking } = useContext(peleasContext);
+  const { luchadoresranking, resetLuchadores } = useContext(peleasContext);
 
   return (
     <header
@@ -15,7 +15,7 @@ export default function Header() {
       }}
     >
       <div>
-        <Link to={"/"}>
+        <Link onClick={() => resetLuchadores()} to={"/"}>
           <Logo />
         </Link>
       </div>
