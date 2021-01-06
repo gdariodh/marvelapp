@@ -16,13 +16,13 @@ export default function Peleas({ history }) {
   // permite seleccionar la cantidad de peleas
   const { FiltroUI, numero_peleas } = useCantidadPeleas(); // custom hook
 
-  // genera abributos random a cada luchador
+  // genera abributos random para cada luchador
   const { atributos1, atributos2 } = useAtributos(); // custom hook
 
-  // add "atributos" a cada luchador
-  luchadores[0].atributos = atributos1;
-  luchadores[1].atributos = atributos2;
-
+  // add atributos a cada luchador
+    luchadores[0].atributos = atributos1;
+    luchadores[1].atributos = atributos2;
+ 
   // analiza al ganador entre los dos luchadores
   const { heroe_ganador } = useGanador(luchadores, numero_peleas); // custom hook
 
