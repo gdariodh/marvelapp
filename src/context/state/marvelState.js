@@ -1,10 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import { marvelContext } from "../index";
 import marvelReducer from "../reducers/marvelReducer";
-// types -> describen la app
-import { MARVEL_GLOBAL, OBJECT_HEROE } from "../../types";
-// axios configurado
-import clienteAxios from "../../config/axios";
+import { MARVEL_GLOBAL, OBJECT_HEROE } from "../../types"; // types -> describen la app
+import clienteAxios from "../../config/axios"; // axios configurado
 
 export default function MarvelState({ children }) {
   // state central -> se altera con el reducer
@@ -12,8 +10,11 @@ export default function MarvelState({ children }) {
     heroes: null,
     heroe_seleccionado: JSON.parse(localStorage.getItem("heroe")),
   };
+
+    // conexion entre state,actions & reducer
+    const [state, dispatch] = useReducer(marvelReducer, initialState);
    
-  // Para hacer la peticion, y tener la data disponible en toda la app
+    // hace llamado api & el array de heroes lo encapsula en state.heroes
   useEffect(() => {
     const req = async () => {
       const key = process.env.REACT_APP_KEY;
@@ -23,29 +24,21 @@ export default function MarvelState({ children }) {
           data: { results },
         },
       } = await clienteAxios(`/characters?ts=1&apikey=${key}&hash=${hash}`);
-      // destructuring
-      // console.log(results)
-      // dispatch se encarga del envio al reducer, para modificar el state central
       dispatch({
         type: MARVEL_GLOBAL,
         payload: results,
       });
-      // modificamos state.heroes
     };
     req();
   }, []);
 
-  //fn que trae el objecto de un heroe
+  // trae el objecto de un heroe
   const dataHeroeById = (heroe) => {
     dispatch({
       type: OBJECT_HEROE,
       payload: heroe,
     });
   };
-
-  // conexion state central con reducer
-  const [state, dispatch] = useReducer(marvelReducer, initialState);
-  // algunas fns globales
 
   // Datos o fns que estaran disponibles en todos los childrens
   return (

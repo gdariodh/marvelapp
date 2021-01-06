@@ -1,36 +1,32 @@
 import React, { useContext, useState } from "react";
+import Swal from "sweetalert2"; // lib alertas
 import { peleasContext } from "../../../context";
-// componente children
+import useAtributos from "../../../hooks/useAtributos"; // custom hook - genera atributos random
+import useGanador from "../../../hooks/useGanador"; // custom hook - genera al ganador de las peleas
+import useCantidadPeleas from "../../../hooks/useCantidadPeleas"; // custom hook - permite seleccionar la cantidad de peleas
+// Components
 import Pelea from "./Pelea";
-// custom hook - Asigna atributos - los cuales son valores son aleatorios
-import useAtributos from "../../../hooks/useAtributos";
-// custom hook - Da a conocer el ganador
-import useGanador from "../../../hooks/useGanador";
-// alert para mostrar el ganador en un modal-alert
-import Swal from "sweetalert2";
-// custom hook - que permite seleccionar la cantidad de peleas
-import useCantidadPeleas from "../../../hooks/useCantidadPeleas";
-// Spinner de carga de redireccion
 import Spinner from "../../spinner/Spinner";
 
 export default function Peleas({ history }) {
+  // context api
   const PeleasContext = useContext(peleasContext);
   const { luchadores, agregaLuchadorRanking } = PeleasContext;
-  // custom hook que permite seleccionar la cantidad de peleas que quiera el usuario
-  const { FiltroUI, numero_peleas } = useCantidadPeleas();
-  // custom hook que asigna abributos random a cada heroe
-  const { atributos1, atributos2 } = useAtributos();
-  // inyectamos "atributos" a los objetos de luchadores
-  // pongo un para que no se cicle esta fn, cuando el usuario ejecuta el boton "Luchars"
-  if (!luchadores[0].atributos || !luchadores[1].atributos) {
-    luchadores[0].atributos = atributos1;
-    luchadores[1].atributos = atributos2;
-  }
 
-  // custom hook que analiza quien ganara entre los dos luchadores
-  const { heroe_ganador } = useGanador(luchadores, numero_peleas);
+  // permite seleccionar la cantidad de peleas
+  const { FiltroUI, numero_peleas } = useCantidadPeleas(); // custom hook
 
-  const [spinner, setSpinner] = useState(false);
+  // genera abributos random a cada luchador
+  const { atributos1, atributos2 } = useAtributos(); // custom hook
+
+  // add "atributos" a cada luchador
+  luchadores[0].atributos = atributos1;
+  luchadores[1].atributos = atributos2;
+
+  // analiza al ganador entre los dos luchadores
+  const { heroe_ganador } = useGanador(luchadores, numero_peleas); // custom hook
+
+  const [spinner, setSpinner] = useState(false); // state local
 
   const mostrarAlertaHeroeGanador = (heroe_ganador) => {
     const { name, thumbnail } = heroe_ganador;
@@ -47,10 +43,9 @@ export default function Peleas({ history }) {
       showCancelButton: false,
       showConfirmButton: false,
     });
-    // lo mandamos al global -> para que se vayan sumando para ir listando en el ranking de ganadores de la jornada global
-    agregaLuchadorRanking(heroe_ganador);
+    agregaLuchadorRanking(heroe_ganador); // agregar el ganador al ranking - peleasContext
     setSpinner(true);
-    // redireccion al sistema de ranking
+    // redirect al ranking
     setTimeout(() => {
       history.push("/heroes/peleadores");
     }, 1800);
@@ -70,7 +65,7 @@ export default function Peleas({ history }) {
                 />
               </div>
 
-              <div className="flex justify-center md:flex-row flex-col items-center md:items-start		flex-wrap">
+              <div className="flex justify-center md:flex-row flex-col items-center md:items-start flex-wrap">
                 <Pelea luchador={luchadores[0]} />
 
                 <div className="md:mt-20 my-10 flex flex-wrap">

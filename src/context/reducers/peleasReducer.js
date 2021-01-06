@@ -5,15 +5,15 @@ export default function (state, action) {
 
   switch (action.type) {
     case LUCHADORES:
-      // TODO: guardar un array con por lo menos 2 objetos
+      // JSON.stringify para guardar un array con por lo menos 2 objetos
       localStorage.setItem("luchadores",JSON.stringify(action.payload))
       return {
         ...state,
-        luchadores: action.payload,
+        luchadores: [...state.luchadores,action.payload],
       };
 
     case LUCHADOR_RANKING:
-      // TODO: guardar un array con uno o mas objetos
+      // JSON.stringify para guardar un array con uno o mas objetos
       localStorage.setItem("ranking",JSON.stringify([action.payload,...state.luchadoresranking]))
       return {
         ...state,

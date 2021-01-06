@@ -1,16 +1,16 @@
 import React from "react";
 export default function Pelea({ luchador }) {
   // children de Peleas.js
+
   const { name, thumbnail, atributos } = luchador;
-  // abtributos que inyectamos en los objectos de luchadores 
+  // atributos que add en los objectos de luchadores 
   const { damage, health, stamina, agility } = atributos;
 
-  // si no hay luchador - no cargar componente
-  if (luchador === null) return null;
+  if (luchador === null) return null; // si no hay luchador - no cargar componente
 
   return (
     <div>
-      <div className='max-w-sm w-64 rounded  overflow-hidden shadow-lg'>
+      <div className='md:max-w-sm w-64 rounded  overflow-hidden shadow-lg'>
         <img
           className='w-full h-64'
           src={`${thumbnail.path}.${thumbnail.extension}`}

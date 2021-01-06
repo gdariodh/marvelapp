@@ -1,43 +1,46 @@
 import React, { useContext, useEffect, useState } from "react";
-import { marvelContext, peleasContext } from "../../context";
+import Swal from "sweetalert2"; // lib de alertas
+import { Link } from "react-router-dom";
+import { marvelContext, peleasContext } from "../../context"; // Context Api
+// Components
 import Spinner from "../spinner/Spinner";
-// preview component
 import Heroe from "./Heroe";
-export default function ListadoHeroes({ history }) {
-  // Contexts
-  const MarvelContext = useContext(marvelContext);
-  const PeleasContext = useContext(peleasContext);
-  // extraemos los values disponibles
-  const { heroes } = MarvelContext;
-  const { seleccionarDosLuchadores } = PeleasContext;
-  const [mostrar_error, setMostrarError] = useState(false);
-  // state local -> se envia a Heroe.js
-  const [luchadores_acumulados, setAcumuladorLuchadores] = useState([]);
 
-  // si luchadores cambia se vuelve a ejecutar el useEffect
+export default function ListadoHeroes() {
+  // context api
+  const { heroes } = useContext(marvelContext);
+  const { luchadores, resetLuchadores } = useContext(peleasContext);
+
+  // state local
+  const [mostrar_error, setMostrarError] = useState(false);
   useEffect(() => {
-    setMostrarError(false);
-    if (luchadores_acumulados.length === 2) {
-      // mandamos la data al state central de peleasState.js
-      if (luchadores_acumulados[0].id === luchadores_acumulados[1].id) {
+    if (luchadores.length !== 0) {
+      // si los luchadores son iguales, resetar el array de luchadores
+      if (luchadores[0] === luchadores[1]) {
+        resetLuchadores(); // action de peleasContext
         setMostrarError(true);
-        setAcumuladorLuchadores([]); // resetar luchadores
       } else {
-        // filtramos los luchadores para evitar pasar un array de luchadores iguales
-        const filtrado = luchadores_acumulados.filter(
-          (luchador) =>
-          luchador.id !== luchadores_acumulados[0].id || luchador.id !== luchadores_acumulados[1].id
-        );
-        seleccionarDosLuchadores(filtrado); // pasamos al context de peleasState
         setMostrarError(false);
       }
+    } else {
+      setMostrarError(false);
     }
-    // eslint-disable-next-line
-  }, [luchadores_acumulados]);
+    //eslint-disable-next-line
+  }, [luchadores]);
 
-  // fn que redirige cuando el usuario ejecuta el boton "Ir a la Arena"
-  const redirectPeleas = () => {
-    history.push("/heroes/peleas");
+  const alertError = () => {
+    // lib sweet alert2
+    Swal.fire({
+      icon: "error",
+      title: "No se puede elegir el mismo luchador dos veces",
+      text: "reiniciando luchadores...",
+      imageWidth: 256,
+      imageHeight: 256,
+      timer: 1000,
+      imageAlt: "error",
+      showCancelButton: false,
+      showConfirmButton: false,
+    });
   };
 
   return (
@@ -48,25 +51,23 @@ export default function ListadoHeroes({ history }) {
         </div>
       ) : (
         <>
-          {/* TODO: ALERTAS DE PROGRESO DE ELECCION DE LUCHADORES */}
-          {luchadores_acumulados.length < 2 && !mostrar_error && (
+          {/* TODO: Alertas de progreso de seleccion de luchadores */}
+          {luchadores.length < 2 && !mostrar_error && (
             <div
-              className="bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold"
+              className="bg-blue-100 shadow-md text-blue-700 px-4 py-3 uppercase font-bold"
               role="alert"
             >
-              {luchadores_acumulados.length === 0 && (
+              {luchadores.length === 0 && (
                 <p className="text-center">Elige a dos luchadores</p>
               )}
-              {luchadores_acumulados.length === 1 && (
+              {luchadores.length === 1 && (
                 <p className="text-center">Elige a tu rival</p>
               )}
             </div>
           )}
 
-          {/* TODO: SI HAY DOS LUCHADORES QUITAR LA LISTA DE HEROES 
-          Y MOSTRAR SOLO EL BOTON DE IR A LA ARENA O REINICIAR LUCHADORES */}
-
-          {luchadores_acumulados.length >= 2 && !mostrar_error ? (
+          {/* TODO: Si hay dos luchadores, mostrar botonoes de "Ir a la arena" y "Reiniciar luchadores" */}
+          {luchadores.length >= 2 && !mostrar_error ? (
             <>
               <div
                 className="bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold"
@@ -75,19 +76,21 @@ export default function ListadoHeroes({ history }) {
                 <p className="text-center">¿Estás listo para la pelea?</p>
               </div>
 
-              <button
-                onClick={() => redirectPeleas()}
-                className=" bg-blue-600 hover:bg-blue-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-blue-800 hover:border-blue-700"
-              >
-                Ir a la Arena
-              </button>
+              <div className="flex justify-center my-8">
+                <Link
+                  to="/heroes/peleas"
+                  className="bg-blue-600 hover:bg-blue-500 text-white shadow uppercase  mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-6 border-b-4 border-blue-800 hover:border-blue-700"
+                >
+                  Ir a la Arena
+                </Link>
+              </div>
 
-              <div className="mt-20 px-4 py-3 uppercase font-bold" role="alert">
+              <div className="mt-12 px-4 py-3 uppercase font-bold" role="alert">
                 <p className="text-center">¿Te has equivocado de luchadores?</p>
               </div>
 
               <button
-                onClick={() => setAcumuladorLuchadores([])}
+                onClick={() => resetLuchadores()}
                 className="bg-red-600 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700"
               >
                 Reiniciar luchadores
@@ -95,26 +98,14 @@ export default function ListadoHeroes({ history }) {
             </>
           ) : (
             <>
-              {mostrar_error && (
-                <div
-                  className="bg-red-100 border-t border-b border-red-500 text-red-500 px-4 py-3 uppercase font-bold"
-                  role="alert"
-                >
-                  <p className="text-center">
-                    LOS LUCHADORES NO PUEDEN SER LOS MISMOS. Elige otro
-                  </p>
-                </div>
-              )}
+              {/* Si no se cumple, muestra el listado de heroes */}
 
-              <div className="flex flex-col md:flex-row flex-wrap pt-4  md:justify-around">
+              {/* alerta de error que se muestra solo cuando los dos luchadores son iguales */}
+              {mostrar_error && <> {alertError()}</>}
+
+              <div className="flex justify-center md:flex-row w-full flex-col items-center md:justify-evenly flex-wrap">
                 {heroes.map((heroe, i) => (
-                  <Heroe
-                    key={`${heroe.id}-${i}`}
-                    heroe={heroe}
-                    setAcumuladorLuchadores={setAcumuladorLuchadores}
-                    luchadores_acumulados={luchadores_acumulados}
-                    setMostrarError={setMostrarError}
-                  />
+                  <Heroe key={`${heroe.id}-${i}`} heroe={heroe} />
                 ))}
               </div>
             </>

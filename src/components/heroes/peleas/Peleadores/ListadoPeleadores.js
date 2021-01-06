@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { peleasContext } from "../../../../context";
 import Peleador from "./Peleador";
-// custom hook -> filtra el ranking
-import useFiltroRanking from "../../../../hooks/useFiltroRanking";
+import useFiltroRanking from "../../../../hooks/useFiltroRanking"; // custom hook -> filtra el ranking
+
 export default function ListadoPeleadores() {
+
+  // context api
   const PeleasContext = useContext(peleasContext);
   const { luchadoresranking } = PeleasContext;
 
@@ -14,9 +16,11 @@ export default function ListadoPeleadores() {
     FiltroAtributos,
   } = useFiltroRanking();
 
+  // state local
   const [filtro, setFiltro] = useState([]);
   const [mostrar_boton, setMostrarBoton] = useState(false);
 
+    // TODO: Fitro 1 -> nro de peleas
   useEffect(() => {
     if (categorias === "2") {
       const segundos = luchadoresranking.filter(
@@ -39,6 +43,7 @@ export default function ListadoPeleadores() {
     // eslint-disable-next-line
   }, [categorias]);
 
+  // TODO: Fitro 2 -> por atributo
   useEffect(() => {
     if (abributo === "damage") {
       const order_damage = luchadoresranking.sort(
@@ -62,7 +67,7 @@ export default function ListadoPeleadores() {
     // eslint-disable-next-line
   }, [abributo]);
 
-  if (luchadoresranking.length === 0) return <p>No hay</p>;
+  if (luchadoresranking.length === 0) return <p className='text-center mt-20 font-semibold text-2xl'>No hay</p>;
 
   return (
     <>

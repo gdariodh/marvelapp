@@ -1,39 +1,31 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { marvelContext } from "../../context";
+import { marvelContext, peleasContext } from "../../context";
 
-// children de ListadoHeroes.js
-export default function Heroe({
-  heroe,
-  setAcumuladorLuchadores,
-  luchadores_acumulados,
-  setMostrarError,
-}) {
-  // Contexts
-  const MarvelContext = useContext(marvelContext);
-  const { dataHeroeById } = MarvelContext;
-  const { name, thumbnail } = heroe;
-  // fn que recibe el ojecto un solo heroe seleccionado
+export default function Heroe({ heroe }) {
+  // Context Api
+  const { dataHeroeById } = useContext(marvelContext);
+  const { seleccionarDosLuchadores } = useContext(peleasContext);
+
+  const { name, thumbnail } = heroe; // prop children
+
+  // recibe objeto de heroe seleccionado
   const handleSeleccionarHeroe = (heroe) => {
     dataHeroeById(heroe);
   };
 
-  // fn que recibe los dos objetos de los dos heroes seleccionados -> y los encapsula en un state
-  const handleSeleccionarLuchadores = (heroes) => {
-    setMostrarError(false);
-    // spread operator para que el nuevo luchador se acumule con el anterior luchador
-    setAcumuladorLuchadores([...luchadores_acumulados, heroes]);
-    // la fn setLuchadores es de ListadoHeroes.js
+  // recibe dos luchadores para el round de peleas
+  const handleSeleccionarLuchadores = (luchador) => {
+    seleccionarDosLuchadores(luchador); // action de peleasContext
   };
 
-  // si heroe esta vacio, no devuelve nada
-  if (heroe === null) return null;
+  if (heroe === null) return null; // revisa si hay heroe
 
   return (
     <>
-      <div className="md:max-w-sm md:w-64 w-full border-2 border-blue-100 rounded overflow-hidden shadow-lg mx-3 my-3">
+      <div className="md:max-w-sm w-64 border-2 border-blue-100 rounded overflow-hidden shadow-lg my-3">
         <img
-          className="md:w-full pr-6 md:px-0 md:h-64"
+          className="w-full h-64"
           src={`${thumbnail.path}.${thumbnail.extension}`}
           alt="Sunset in the mountains"
         />
