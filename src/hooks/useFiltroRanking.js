@@ -10,7 +10,7 @@ const useFitroRanking = () => {
       <select
         onChange={(e) => setCategorias(e.target.value)}
         value={categorias}
-        className='text-md font-semibold mb-2'
+        className='text-md focus:outline-none font-semibold mb-2'
         >
         <option className='text-md font-semibold mb-2' value=''>--Filtrar por mas de un Pelea--</option>
         <option className='text-md font-semibold mb-2' value={2}>Los que tienen dos peleas ganadas</option>
@@ -20,11 +20,11 @@ const useFitroRanking = () => {
   );
 
   const FiltroAtributos = () => (
-    <form className='bg-white shadow-md rounded flex justify-center uppercase'>
+    <form className='bg-white  shadow-md rounded flex justify-center uppercase'>
     <select
       onChange={(e) => setAtributo(e.target.value)}
       value={abributo}
-      className='text-md font-semibold mb-2'
+      className='text-md font-semibold mb-2 focus:outline-none'
       >
       <option className='text-md font-semibold mb-2' value=''>--Ordenar por Atributo--</option>
       <option className='text-md font-semibold mb-2' value='damage'>De mayor a menor daño</option>
