@@ -1,12 +1,11 @@
 import React from "react";
-export default function Pelea({ luchador }) {
-  // children de Peleas.js
 
-  const { name, thumbnail, atributos } = luchador;
-  // atributos que add en los objectos de luchadores 
+export default function Pelea({ luchador }) {
+
+  const { name, thumbnail, atributos } = luchador; 
   const { damage, health, stamina, agility } = atributos;
 
-  if (luchador === null) return null; // si no hay luchador - no cargar componente
+  if (luchador === null) return null; // revisa si existe luchador
 
   return (
 
