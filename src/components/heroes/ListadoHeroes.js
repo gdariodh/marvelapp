@@ -32,8 +32,8 @@ export default function ListadoHeroes() {
     // lib sweet alert2
     Swal.fire({
       icon: "error",
-      title: "No se puede elegir el mismo luchador dos veces",
-      text: "reiniciando luchadores...",
+      title: "El luchador no se puede repetir dos veces seguidas",
+      text: "vuelve a elegir 2 luchadores",
       imageWidth: 256,
       imageHeight: 256,
       timer: 1000,
