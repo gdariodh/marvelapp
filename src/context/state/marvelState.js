@@ -12,16 +12,17 @@ export default function MarvelState({ children }) {
     heroes: null,
     heroe_seleccionado: JSON.parse(localStorage.getItem("heroe")),
   };
-
+   
   // Para hacer la peticion, y tener la data disponible en toda la app
   useEffect(() => {
     const req = async () => {
-      const key = `f2b9a3277c025b953471c3448f8c8905`;
+      const key = process.env.REACT_APP_KEY;
+      const hash = process.env.REACT_APP_HASH;
       const {
         data: {
           data: { results },
         },
-      } = await clienteAxios(`/characters?apikey=${key}`);
+      } = await clienteAxios(`/characters?ts=1&apikey=${key}&hash=${hash}`);
       // destructuring
       // console.log(results)
       // dispatch se encarga del envio al reducer, para modificar el state central
