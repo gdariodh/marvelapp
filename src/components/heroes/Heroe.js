@@ -23,7 +23,7 @@ export default function Heroe({ heroe }) {
 
   return (
     <>
-      <div className="md:max-w-sm w-64 border-2 border-blue-100 rounded overflow-hidden shadow-lg my-3">
+      <div className="md:max-w-sm md:mx-4 w-3/4	md:w-64 border-2 border-blue-100 rounded overflow-hidden shadow-lg my-3">
         <img
           className="w-full h-64"
           src={`${thumbnail.path}.${thumbnail.extension}`}
