@@ -36,7 +36,7 @@ export default function ListadoHeroes() {
       text: "vuelve a elegir 2 luchadores",
       imageWidth: 256,
       imageHeight: 256,
-      timer: 1000,
+      timer: 1700,
       imageAlt: "error",
       showCancelButton: false,
       showConfirmButton: false,
@@ -79,7 +79,7 @@ export default function ListadoHeroes() {
               <div className="flex justify-center my-8">
                 <Link
                   to="/heroes/peleas"
-                  className="bg-blue-600 hover:bg-blue-500 text-white shadow uppercase  mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-6 border-b-4 border-blue-800 hover:border-blue-700"
+                  className="bg-blue-600 hover:bg-blue-500 py-4 px-20 text-white shadow uppercase  mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold  border-b-4 border-blue-800 hover:border-blue-700"
                 >
                   Ir a la Arena
                 </Link>
@@ -91,7 +91,7 @@ export default function ListadoHeroes() {
 
               <button
                 onClick={() => resetLuchadores()}
-                className="bg-red-600 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700"
+                className="bg-red-600 py-4 px-12 md:px-16 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold border-b-4 border-red-800 hover:border-red-700"
               >
                 Reiniciar luchadores
               </button>

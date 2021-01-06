@@ -65,7 +65,7 @@ export default function Peleas({ history }) {
                 />
               </div>
 
-              <div className="flex justify-center md:flex-row flex-col items-center md:items-start flex-wrap">
+              <div className="flex justify-center xl:flex-row flex-col items-center xl:items-start flex-wrap">
                 <Pelea luchador={luchadores[0]} />
 
                 <div className="md:mt-20 my-10 flex flex-wrap">
