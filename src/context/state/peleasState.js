@@ -5,7 +5,7 @@ import { LUCHADORES, LUCHADOR_RANKING, RESET_LUCHADORES } from "../../types";
 
 export default function PeleasState({ children }) {
   const initialState = {
-    // TODO: forma de obtener el array del localStorage
+    // forma de obtener el array del localStorage
     luchadores: JSON.parse(localStorage.getItem("luchadores"))
       ? JSON.parse(localStorage.getItem("luchadores"))
       : [],
