@@ -41,58 +41,82 @@ export default function ListadoHeroes({ history }) {
   return (
     <>
       {!heroes ? (
-        <div className='mt-48'>
+        <div className="mt-48">
           <Spinner />
         </div>
       ) : (
         <>
-          {luchadores_acumulados.length < 3 && !mostrar_error && (
+          {/* TODO: ALERTAS DE PROGRESO DE ELECCION DE LUCHADORES */}
+          {luchadores_acumulados.length < 2 && !mostrar_error && (
             <div
-              className='bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold'
-              role='alert'>
+              className="bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold"
+              role="alert"
+            >
               {luchadores_acumulados.length === 0 && (
-                <p className='text-center'>Elige a dos luchadores</p>
+                <p className="text-center">Elige a dos luchadores</p>
               )}
               {luchadores_acumulados.length === 1 && (
-                <p className='text-center'>Elige a tu rival</p>
-              )}
-              {luchadores_acumulados.length >= 2 && (
-                <p className='text-center'>¿Estás listo para la pelea?</p>
+                <p className="text-center">Elige a tu rival</p>
               )}
             </div>
           )}
 
-          {luchadores_acumulados.length >= 2 && !mostrar_error && (
+          {/* TODO: SI HAY DOS LUCHADORES QUITAR LA LISTA DE HEROES 
+          Y MOSTRAR SOLO EL BOTON DE IR A LA ARENA O REINICIAR LUCHADORES */}
+
+          {luchadores_acumulados.length >= 2 && !mostrar_error ? (
             <>
+              <div
+                className="bg-blue-100 shadow-md  text-blue-700 px-4 py-3 uppercase font-bold"
+                role="alert"
+              >
+                <p className="text-center">¿Estás listo para la pelea?</p>
+              </div>
+
               <button
                 onClick={() => redirectPeleas()}
-                className='bg-red-600 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700'>
+                className=" bg-blue-600 hover:bg-blue-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-blue-800 hover:border-blue-700"
+              >
                 Ir a la Arena
               </button>
+
+              <div className="mt-20 px-4 py-3 uppercase font-bold" role="alert">
+                <p className="text-center">¿Te has equivocado de luchadores?</p>
+              </div>
+
+              <button
+                onClick={() => setAcumuladorLuchadores([])}
+                className="bg-red-600 hover:bg-red-500 text-white shadow  mt-6 mb-6 uppercase flex mx-auto rounded-lg focus:outline-none focus:shadow-outline font-bold py-2 px-4 border-b-4 border-red-800 hover:border-red-700"
+              >
+                Reiniciar luchadores
+              </button>
+            </>
+          ) : (
+            <>
+              {mostrar_error && (
+                <div
+                  className="bg-red-100 border-t border-b border-red-500 text-red-500 px-4 py-3 uppercase font-bold"
+                  role="alert"
+                >
+                  <p className="text-center">
+                    LOS LUCHADORES NO PUEDEN SER LOS MISMOS. Elige otro
+                  </p>
+                </div>
+              )}
+
+              <div className="flex flex-col md:flex-row flex-wrap pt-4  md:justify-around">
+                {heroes.map((heroe, i) => (
+                  <Heroe
+                    key={`${heroe.id}-${i}`}
+                    heroe={heroe}
+                    setAcumuladorLuchadores={setAcumuladorLuchadores}
+                    luchadores_acumulados={luchadores_acumulados}
+                    setMostrarError={setMostrarError}
+                  />
+                ))}
+              </div>
             </>
           )}
-
-          {mostrar_error && (
-            <div
-              className='bg-red-100 border-t border-b border-red-500 text-red-500 px-4 py-3 uppercase font-bold'
-              role='alert'>
-              <p className='text-center'>
-                LOS LUCHADORES NO PUEDEN SER LOS MISMOS. Elige otro
-              </p>
-            </div>
-          )}
-
-          <div className='flex flex-col md:flex-row flex-wrap pt-4  md:justify-around'>
-            {heroes.map((heroe, i) => (
-              <Heroe
-                key={`${heroe.id}-${i}`}
-                heroe={heroe}
-                setAcumuladorLuchadores={setAcumuladorLuchadores}
-                luchadores_acumulados={luchadores_acumulados}
-                setMostrarError={setMostrarError}
-              />
-            ))}
-          </div>
         </>
       )}
     </>

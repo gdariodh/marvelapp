@@ -21,6 +21,7 @@ export default function Heroe({
   // fn que recibe los dos objetos de los dos heroes seleccionados -> y los encapsula en un state
   const handleSeleccionarLuchadores = (heroes) => {
     setMostrarError(false);
+    // spread operator para que el nuevo luchador se acumule con el anterior luchador
     setAcumuladorLuchadores([...luchadores_acumulados, heroes]);
     // la fn setLuchadores es de ListadoHeroes.js
   };
