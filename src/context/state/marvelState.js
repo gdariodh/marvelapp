@@ -51,11 +51,11 @@ export default function MarvelState({ children }) {
     <marvelContext.Provider
       value={{
         heroes: state.heroes,
-        heroe_seleccionado:state.heroe_seleccionado,
+        heroe_seleccionado: state.heroe_seleccionado,
         dataHeroeById: dataHeroeById,
-      }}>
+      }}
+    >
       {children}
     </marvelContext.Provider>
   );
 }
-
