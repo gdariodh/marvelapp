@@ -1,11 +1,12 @@
-# App marvel app
+# App marvel app - Autor: gdariodh
+## Frontend: Reactjs
 
-## Contiene:
+### Link Marvel App: https://marvelapp.vercel.app/
 
-- Consume la api publica de marvel para desarrolladores.
-- Consume varios endpoints de la api.
-- Tiene sistema de luchas.
-- Sistema de ranking de las luchas, tambien el mismo ranking tiene filtros como el que tiene mas peleas y filtro en base a los atributos de cada heroe.
-- Contiene vista de los comics, series, etc de cada heroe.
+- Consume api de marvel para desarrolladores.
+- Sistema de luchas con personajes de marvel.
+- Sistema de ranking con los ganadores de cada lucha.
+- El Ranking tiene dos filtros uno por peleas y otro por atributo.
+- Cada personaje tiene su vista de comics, series, etc. en `Quieres saber mas sobre ${personaje}`
 - LocalStorage.
 
