@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header
-      className="bg-auto text-white sm:bg-local py-4 flex flex-col md:flex-row md:justify-between justify-center items-center md:p-4"
+      className="bg-top bg-no-repeat bg-fixed bg-cover	text-white sm:bg-local py-4 flex flex-col md:flex-row md:justify-between justify-center items-center md:p-4"
       style={{
         backgroundImage: `url("https://universocompartido.com.ar/wp-content/uploads/2019/03/vlcsnap-2019-03-14-18h17m39s535-1030x427.png")`,
       }}
