@@ -9,8 +9,8 @@ export default function Pelea({ luchador }) {
   if (luchador === null) return null; // si no hay luchador - no cargar componente
 
   return (
-    <div>
-      <div className='md:max-w-sm w-64 rounded  overflow-hidden shadow-lg'>
+
+      <div className='md:max-w-sm w-3/4	md:w-64 rounded  overflow-hidden shadow-lg'>
         <img
           className='w-full h-64'
           src={`${thumbnail.path}.${thumbnail.extension}`}
@@ -33,6 +33,6 @@ export default function Pelea({ luchador }) {
           </div>
         </div>
       </div>
-    </div>
+
   );
 }
