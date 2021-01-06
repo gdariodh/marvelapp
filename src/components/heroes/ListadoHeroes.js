@@ -21,12 +21,14 @@ export default function ListadoHeroes({ history }) {
       // mandamos la data al state central de peleasState.js
       if (luchadores_acumulados[0].id === luchadores_acumulados[1].id) {
         setMostrarError(true);
+        setAcumuladorLuchadores([]); // resetar luchadores
       } else {
+        // filtramos los luchadores para evitar pasar un array de luchadores iguales
         const filtrado = luchadores_acumulados.filter(
-          (l) =>
-            l.id !== luchadores_acumulados[0].id || luchadores_acumulados[1].id
+          (luchador) =>
+          luchador.id !== luchadores_acumulados[0].id || luchador.id !== luchadores_acumulados[1].id
         );
-        seleccionarDosLuchadores(filtrado);
+        seleccionarDosLuchadores(filtrado); // pasamos al context de peleasState
         setMostrarError(false);
       }
     }
